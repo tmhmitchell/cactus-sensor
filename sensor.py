@@ -5,6 +5,9 @@ import board
 import busio
 from adafruit_ads1x15 import ads1115, analog_in
 
+MAX_VOLTAGE = 3.3
+MIN_VOLTAGE = 0.0
+
 logging.basicConfig(
     filename="HISTORYlistener.log",
     level=logging.DEBUG,
@@ -18,13 +21,18 @@ def clamp_voltage(voltage: float) -> float:
     """It's possible we read a voltage higher than we're supplying.
     Clamp to a maximum of 3.3v to make calculations easier.
     """
-    if voltage < 0.0:
-        return 0.0
+    if voltage < MIN_VOLTAGE:
+        return MIN_VOLTAGE
 
-    if voltage > 3.3:
-        return 3.3
+    if voltage > MAX_VOLTAGE:
+        return MAX_VOLTAGE
 
     return voltage
+
+
+def normalise(value, max_value, min_value):
+    """Normalise a value to a percentage between max_value and min_value"""
+    return abs((value - min_value) / (max_value - min_value))
 
 
 if __name__ == "__main__":
@@ -33,7 +41,11 @@ if __name__ == "__main__":
     channel = analog_in.AnalogIn(adc, ads1115.P0)
 
     while True:
-        clamped_voltage = clamp_voltage(channel.voltage)
+        percentage_hydration = normalise(
+            value=clamp_voltage(channel.voltage),
+            max_value=MAX_VOLTAGE,
+            min_value=MIN_VOLTAGE,
+        )
 
-        print(f"{clamped_voltage}v out of 3.3v")
+        print(f"{percentage_hydration:}")
         time.sleep(0.1)
