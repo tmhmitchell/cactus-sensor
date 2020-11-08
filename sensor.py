@@ -1,4 +1,5 @@
 import logging
+import sys
 import time
 
 import board
@@ -9,8 +10,8 @@ MAX_VOLTAGE = 3.3
 MIN_VOLTAGE = 0.0
 
 logging.basicConfig(
-    filename="HISTORYlistener.log",
-    level=logging.DEBUG,
+    stream=sys.stdout,
+    level=logging.INFO,
     format="[{asctime}] [{levelname}] {message}",
     datefmt="%Y-%m-%d %H:%M:%S",
 )
