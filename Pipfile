@@ -9,6 +9,7 @@ black = "*"
 
 [packages]
 adafruit-circuitpython-ads1x15 = "*"
+"RPi.GPIO" = "*"
 
 [requires]
 python_version = "3.7"
