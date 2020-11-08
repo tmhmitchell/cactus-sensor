@@ -31,7 +31,7 @@ def clamp_voltage(voltage: float) -> float:
     return voltage
 
 
-def normalise(value, max_value, min_value):
+def normalise(value, max_value: float, min_value: float) -> float:
     """Normalise a value to a percentage between max_value and min_value"""
     return abs((value - min_value) / (max_value - min_value))
 
