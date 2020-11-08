@@ -48,5 +48,5 @@ if __name__ == "__main__":
             min_value=MAX_VOLTAGE,
         )
 
-        print(f"{percentage_hydration:}")
-        time.sleep(0.1)
+        logger.info("%.1f")
+        time.sleep(1)
