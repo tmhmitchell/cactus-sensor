@@ -43,8 +43,9 @@ if __name__ == "__main__":
     while True:
         percentage_hydration = normalise(
             value=clamp_voltage(channel.voltage),
-            max_value=MAX_VOLTAGE,
-            min_value=MIN_VOLTAGE,
+            # Pass these backwards - open ciruit represents no moisture
+            max_value=MIN_VOLTAGE,
+            min_value=MAX_VOLTAGE,
         )
 
         print(f"{percentage_hydration:}")
