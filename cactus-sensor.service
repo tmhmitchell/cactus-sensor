@@ -1,0 +1,15 @@
+[Unit]
+Description=Monitor soil hydration and report to an API
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/cactus-sensor
+ExecStartPre=pipenv install
+ExecStart=pipenv run python sensor.py
+Environment=PIPENV_VENV_IN_PROJECT=1
+Environment=CACTUS_API_TOKEN=<your-api-token>
+Environment=CACTUS_API_ENDPOINT=<your-api-endpoint>
+
+[Install]
+WantedBy=multi-user.target
