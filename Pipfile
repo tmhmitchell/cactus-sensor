@@ -11,6 +11,7 @@ mypy = "*"
 [packages]
 adafruit-circuitpython-ads1x15 = "*"
 "RPi.GPIO" = "*"
+requests = "*"
 
 [requires]
 python_version = "3.7"
