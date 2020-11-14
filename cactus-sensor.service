@@ -5,7 +5,6 @@ After=network.target
 [Service]
 Type=simple
 WorkingDirectory=/opt/cactus-sensor
-ExecStartPre=pipenv install
 ExecStart=pipenv run python sensor.py
 Environment=PIPENV_VENV_IN_PROJECT=1
 Environment=CACTUS_API_TOKEN=<your-api-token>
