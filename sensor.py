@@ -70,6 +70,6 @@ if __name__ == "__main__":
             json={"hydration": rounded_hydration},
             headers={"X-Cactus-Auth": api_token},
         )
-        logging.info("Sent a hydration of %.1f to the API", rounded_hydration)
+        logging.info("Sent a hydration of %.2f to the API", rounded_hydration)
 
         time.sleep(1)
