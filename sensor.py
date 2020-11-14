@@ -63,11 +63,13 @@ if __name__ == "__main__":
             clamped_voltage, VOLTAGE_WHEN_WATER, VOLTAGE_WHEN_AIR
         )
 
+        rounded_hydration = round(percentage_hydration, 2)
+
         requests.post(
             api_endpoint,
-            json={"hydration": percentage_hydration},
+            json={"hydration": rounded_hydration},
             headers={"X-Cactus-Auth": api_token},
         )
-        logging.info("Sent a hydration of %.1f to the API", percentage_hydration)
+        logging.info("Sent a hydration of %.1f to the API", rounded_hydration)
 
         time.sleep(1)
