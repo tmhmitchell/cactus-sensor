@@ -64,12 +64,15 @@ if __name__ == "__main__":
         )
 
         rounded_hydration = round(percentage_hydration, 2)
-
-        requests.post(
-            api_endpoint,
-            json={"hydration": rounded_hydration},
-            headers={"X-Cactus-Auth": api_token},
-        )
-        logging.info("Sent a hydration of %.2f to the API", rounded_hydration)
+        try:
+            requests.post(
+                api_endpoint,
+                json={"hydration": rounded_hydration},
+                headers={"X-Cactus-Auth": api_token},
+            )
+            logging.info("Sent a hydration of %.2f to the API", rounded_hydration)
+        except requests.exceptions.ConnectionError:
+            logging.warning("Failed to connect to the API")
+        
 
         time.sleep(1)
